@@ -11,37 +11,22 @@
 Отсортировать их по алфавиту 
 
 5) Добавить нумерацию выведенных фильмов */
-
 'use strict';
 
-const movieDB = {
-   movies: [
-      "Логан",
-      "Лига справедливости",
-      "Ла-ла лэнд",
-      "Одержимость",
-      "Скотт Пилигрим против..."
-   ]
+var movieDB = {
+  movies: ["Логан", "Лига справедливости", "Ла-ла лэнд", "Одержимость", "Скотт Пилигрим против..."]
 };
-
-const adBlock = document.querySelectorAll('.promo__adv img'),
-   poster = document.querySelector('.promo__bg'),
-   genre = poster.querySelector('.promo__genre'),
-   movieList = document.querySelector('.promo__interactive-list');
-
-adBlock.forEach(item => {
-   item.remove();
+var adBlock = document.querySelectorAll('.promo__adv img'),
+    poster = document.querySelector('.promo__bg'),
+    genre = poster.querySelector('.promo__genre'),
+    movieList = document.querySelector('.promo__interactive-list');
+adBlock.forEach(function (item) {
+  item.remove();
 });
-
 genre.textContent = 'драма';
 poster.style.backgroundImage = 'url("img/bg.jpg")';
 movieList.innerHTML = '';
 movieDB.movies.sort();
-
-movieDB.movies.forEach((film, i) => {
-   movieList.innerHTML += `
-         <li class="promo__interactive-item">${i + 1}. ${film}
-               <div class="delete"></div>
-         </li>`;
+movieDB.movies.forEach(function (film, i) {
+  movieList.innerHTML += "\n         <li class=\"promo__interactive-item\">".concat(i + 1, ". ").concat(film, "\n               <div class=\"delete\"></div>\n         </li>");
 });
-
