@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
       arr.forEach(item => {
          item.remove();
       });
-   }
+   };
 
    const makeChanges = (text, fon) => {
       text.textContent = 'драма';
       fon.style.backgroundImage = 'url("img/bg.jpg")';
-   }
+   };
 
    const sortArr = (arr) => {
       arr.sort();
@@ -60,7 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (newFilm) {
          if (newFilm.length > 21) {
-            newFilm = `${newFilm.substring(0, 22)}...`
+            newFilm = (`${newFilm.substring(0, 22)}...`);
+         }
+         if (favorite) {
+            console.log('Добавляем любимый фильм');
          }
 
          movieDB.movies.push(newFilm);
@@ -76,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    function createMovieList(films, parent) {
       parent.innerHTML = '';
+      sortArr(films);
       films.forEach((film, i) => {
          parent.innerHTML += `
                <li class="promo__interactive-item">${i + 1}. ${film}
@@ -86,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
          btn.addEventListener('click', () => {
             btn.parentElement.remove();
             movieDB.movies.splice(i, 1);
-            createMovieList(movieDB.movies, movieList);
-         })
-      })
+            createMovieList(films, parent);
+
+         });
+      });
    }
 
    deleteAdv(adBlock);
-   sortArr(movieDB.movies);
    makeChanges(genre, poster);
    createMovieList(movieDB.movies, movieList);
 
